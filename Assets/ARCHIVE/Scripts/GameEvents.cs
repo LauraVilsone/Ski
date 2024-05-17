@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class GameEvents : MonoBehaviour
 {
+    public GameObject confetti;
     public delegate void startRaceAction();
     public delegate void stopRaceAction();
     public delegate void retryRaceAction();
@@ -65,6 +66,7 @@ public class GameEvents : MonoBehaviour
     public static void StopRace()
     {
         Debug.Log("Stop race!!");
+        //Instantiate(confetti, new Vector3(0 * 2.0f, 0, 0), Quaternion.identity);
         if (OnRaceStop != null)
         {
             OnRaceStop();
