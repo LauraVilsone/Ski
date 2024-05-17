@@ -6,7 +6,7 @@ using UnityEngine.ProBuilder;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody m_Rigidbody;
-	Animator m_Animator;
+	public Animator m_Animator;
 	public float rotationSpeed;
 	public float minRotation;
 	public float maxRotation;
