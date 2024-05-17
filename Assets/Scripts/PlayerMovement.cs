@@ -47,9 +47,14 @@ public class PlayerMovement : MonoBehaviour
 		}
 		if (Input.GetKey(KeyCode.Space) && (boostAvailable))
 		{
-			m_Rigidbody.AddForce(transform.forward * boostForce);
-			m_Animator.Play("Fly Forward");
-			boostAvailable = false;
+			PlayerBoost();
 		}
+	}
+
+	public void PlayerBoost()
+	{
+		m_Rigidbody.AddForce(transform.forward * boostForce);
+		m_Animator.Play("Fly Forward");
+		boostAvailable = false;
 	}
 }
