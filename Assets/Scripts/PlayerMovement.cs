@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody m_Rigidbody;
 	//public float speed = 20f;
-	//public float rotationSpeed;
+	public float rotationSpeed;
 	//public float turnSpeed = 100f;
 	//public float dampen;
 	public float minRotation;
@@ -27,13 +27,13 @@ public class PlayerMovement : MonoBehaviour
 		float angleY = transform.eulerAngles.y;
 		if (Input.GetKey(KeyCode.A) && (angleY < maxRotation))
 		{
-			Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime);
+			Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime * rotationSpeed);
 			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 		}
 
 		if (Input.GetKey(KeyCode.D) && (angleY > minRotation))
 		{
-			Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime * -1);
+			Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime * -1 * rotationSpeed);
 			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 		}
 		//if (!Input.anyKey)
