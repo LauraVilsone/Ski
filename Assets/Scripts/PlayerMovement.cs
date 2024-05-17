@@ -6,19 +6,19 @@ using UnityEngine.ProBuilder;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody m_Rigidbody;
-	//public float speed = 20f;
+	Animator m_Animator;
 	public float rotationSpeed;
-	//public float turnSpeed = 100f;
-	//public float dampen;
 	public float minRotation;
 	public float maxRotation;
 	Vector3 m_EulerAngleVelocity;
 	public float force;
+	public bool boostAvailable = true;
+	public int boostForce;
 
 	void Start()
 	{
-		//Fetch the Rigidbody from the GameObject with this script attached
 		m_Rigidbody = GetComponent<Rigidbody>();
+		m_Animator = GetComponent<Animator>();
 		m_EulerAngleVelocity = new Vector3(0, 100, 0);
 	}
 
@@ -36,61 +36,20 @@ public class PlayerMovement : MonoBehaviour
 			Quaternion deltaRotation = Quaternion.Euler(m_EulerAngleVelocity * Time.fixedDeltaTime * -1 * rotationSpeed);
 			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * deltaRotation);
 		}
-		//if (!Input.anyKey)
-		//{
-		//	m_Rigidbody.AddForce(transform.forward * force);
-		//}
 
-			if ((angleY > minRotation) && (angleY < maxRotation))
-			{
-				m_Rigidbody.AddForce(transform.forward * force);
-			}
-			else if ((angleY <= minRotation) || (angleY >= maxRotation))
-			{
-				m_Rigidbody.velocity = Vector3.zero;
-			}
-	}
-
-	//void FixedUpdate()
-	//{
-	//m_Rigidbody.AddForce(transform.forward * speed);
-
-	/*if (Input.GetKey(KeyCode.A))
-	{
-		if(transform.rotation.eulerAngles.y < maxRotation)
+		if ((angleY > minRotation) && (angleY < maxRotation))
 		{
-			transform.Rotate(-Vector3.up * rotationSpeed * Time.deltaTime);
+			m_Rigidbody.AddForce(transform.forward * force);
 		}
-
-		//m_Rigidbody.AddForce(-transform.right * turnSpeed);
-		//m_Rigidbody.drag++;
-		/*if (m_Rigidbody.velocity.z > 0)
+		else if ((angleY <= minRotation) || (angleY >= maxRotation))
 		{
-			m_Rigidbody.AddForce(-transform.forward * dampen);
-		}*/
-	//m_Rigidbody.velocity = new Vector3(turnSpeed, 0, 0);
-	/*}
-
-	if (Input.GetKey(KeyCode.D))
-	{
-		if (transform.rotation.eulerAngles.y > minRotation)
+			m_Rigidbody.velocity = Vector3.zero;
+		}
+		if (Input.GetKey(KeyCode.Space) && (boostAvailable))
 		{
-			transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-		}*/
-	//m_Rigidbody.AddForce(transform.right * turnSpeed);
-	//m_Rigidbody.drag++;
-
-	/*if(m_Rigidbody.velocity.z > 0)
-	{
-		m_Rigidbody.AddForce(-transform.forward * dampen);
-	}*/
-	//m_Rigidbody.velocity = new Vector3(-turnSpeed, 0, 0);
-	//}
-
-	//if (!Input.anyKey)
-	//{
-	//	m_Rigidbody.AddForce(transform.forward * speed);
-	//m_Rigidbody.drag = 0;
-	//}
-	//}
+			m_Rigidbody.AddForce(transform.forward * boostForce);
+			m_Animator.Play("Fly Forward");
+			boostAvailable = false;
+		}
+	}
 }
