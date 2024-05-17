@@ -6,9 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ARCHIVE/LV.unity
-    guid: 11555d393a9e59e49b8c3e56035b68b0
-  - enabled: 1
-    path: Assets/Scenes/ARCHIVE/SkiGame_Couse3_Session4_Optimization.unity
-    guid: 9a8ba000d6c97c0499ff8f5cb512095c
+    path: Assets/Scenes/Game.unity
+    guid: 190b2d340504f1b40ae348a877689839
   m_configObjects: {}
