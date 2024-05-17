@@ -5,6 +5,7 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
 	public PlayerMovement playerMovement;
+    public CameraFollow cameraFollow;
 
 	private void OnCollisionEnter(Collision collision)
     {
@@ -12,6 +13,7 @@ public class Obstacle : MonoBehaviour
         {
             hitPlayer(collision.gameObject);
 			playerMovement.m_Animator.Play("Get Hit");
+            cameraFollow.CameraShake();
 		}
     }
 
